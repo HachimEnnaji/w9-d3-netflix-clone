@@ -11,9 +11,9 @@ function MyNavbar(props) {
         <Navbar.Toggle aria-controls="navbarSupportedContent" />
         <Navbar.Collapse id="navbarSupportedContent">
           <Nav className="me-auto">
-            <NavLink /* href="#" */ as={NavLink} to={"/"}>
+            <Nav.Link as={NavLink} to={"/"}>
               Home
-            </NavLink>
+            </Nav.Link>
             <Nav.Link href="#">TV Shows</Nav.Link>
             <Nav.Link href="#">Movies</Nav.Link>
             <Nav.Link href="#">Recently added</Nav.Link>

@@ -2,6 +2,7 @@ import React from "react";
 import { Navbar, Nav, Container, Button, Dropdown } from "react-bootstrap";
 import avatar from "../assets/avatar.png";
 import logo from "../assets/netflix_logo.png";
+import { NavLink } from "react-router-dom";
 
 const SettingsNavbar = (props) => {
   return (
@@ -10,13 +11,13 @@ const SettingsNavbar = (props) => {
         <div className="col-12">
           <Navbar bg="transparent" expand="lg" variant="dark">
             <Container>
-              <Navbar.Brand className="text-white" href="#">
-                <img src={logo} alt="logo" className="logo" onClick={() => props.callbackDetailPage("main")} />
+              <Navbar.Brand className="text-white" as={NavLink} to={"/"}>
+                <img src={logo} alt="logo" className="logo" />
               </Navbar.Brand>
               <Navbar.Toggle aria-controls="navbarSupportedContent" />
               <Navbar.Collapse id="navbarSupportedContent">
                 <Nav className="me-auto mb-2 mb-lg-0">
-                  <Nav.Link href="#" onClick={() => props.callbackDetailPage("main")}>
+                  <Nav.Link as={NavLink} to={"/"}>
                     Home
                   </Nav.Link>
                   <Nav.Link href="#">TV Shows</Nav.Link>
