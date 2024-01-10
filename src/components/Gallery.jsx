@@ -68,7 +68,7 @@ const Gallery = ({ movieList, id, title }) => {
   }, [movieList, maxSliderItem]);
 
   useEffect(() => {
-    if (activeIndex == movieMatrix.length) {
+    if (activeIndex === movieMatrix.length) {
       fixAutoAnimation();
       setActiveIndex(0);
     }
