@@ -32,7 +32,7 @@ function App() {
           />
           <Route path="/settings" element={<Settings />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/MovieDeatails/:movieId" element={<MovieDetails />} />
+          <Route path="/MovieDetails/:movieId" element={<MovieDetails />} />
         </Routes>
       </BrowserRouter>
     </>
