@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { Badge, Card, Col, Container, Placeholder, Row } from "react-bootstrap";
+import { Alert, Badge, Card, Col, Container, Placeholder, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 
 const MovieDetails = () => {
   const [movie, setMovie] = useState(null);
   // eslint-disable-next-line no-unused-vars
   const [isHover, setIsHover] = useState(false);
+  const [error, setError] = useState(null);
 
   const params = useParams();
   //   http://www.omdbapi.com/?apikey=aa5aec3c&s= +params.imdbID"
@@ -15,7 +16,11 @@ const MovieDetails = () => {
       if (response.ok) {
         const result = await response.json();
         // console.log(result);
-        setMovie(result);
+        if (result.Response === "False") {
+          setError(result.Error);
+        } else {
+          setMovie(result);
+        }
       } else {
         throw new Error("Errore nella richiesta dei dati");
       }
@@ -31,7 +36,7 @@ const MovieDetails = () => {
   }, []);
   return (
     <Container className="mt-3 ">
-      {movie !== null ? (
+      {movie && !error ? (
         <>
           <h2 className="text-center">
             <span className="text-secondary">Hai Scelto:</span> <strong>{movie.Title}</strong>
@@ -72,8 +77,10 @@ const MovieDetails = () => {
               </Card>
             </Col>
           </Row>
-          {console.log("passo per il circuito in cui ho il film\t" + movie)}
+          {console.log("passo per il circuito in cui ho il film\t", movie)}
         </>
+      ) : error ? (
+        <Alert variant="danger">{error}</Alert>
       ) : (
         <>
           <h2 className="text-center">
@@ -98,7 +105,7 @@ const MovieDetails = () => {
                 </Card.Text>
               </Card>
               {/* {console.log("sono passato da qui per il caricamento" + movie.Title)} */}
-              {console.log("passo per il circuito in cui NON ho il film\t" + movie)}
+              {console.log("passo per il circuito in cui NON ho il film\t", movie)}
             </Col>
           </Row>
         </>
